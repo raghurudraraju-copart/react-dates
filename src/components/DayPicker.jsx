@@ -27,6 +27,7 @@ import getActiveElement from '../utils/getActiveElement';
 import isDayVisible from '../utils/isDayVisible';
 
 import ModifiersShape from '../shapes/ModifiersShape';
+import NavPositionShape from '../shapes/NavPositionShape';
 import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
 import CalendarInfoPositionShape from '../shapes/CalendarInfoPositionShape';
@@ -41,6 +42,8 @@ import {
   INFO_POSITION_BEFORE,
   INFO_POSITION_AFTER,
   MODIFIER_KEY_NAMES,
+  NAV_POSITION_TOP,
+  NAV_POSITION_BOTTOM,
 } from '../constants';
 
 const MONTH_PADDING = 23;
@@ -76,6 +79,7 @@ const propTypes = forbidExtraProps({
   // navigation props
   disablePrev: PropTypes.bool,
   disableNext: PropTypes.bool,
+  navPosition: NavPositionShape,
   navPrev: PropTypes.node,
   navNext: PropTypes.node,
   noNavButtons: PropTypes.bool,
@@ -138,6 +142,7 @@ export const defaultProps = {
   // navigation props
   disablePrev: false,
   disableNext: false,
+  navPosition: NAV_POSITION_TOP,
   navPrev: null,
   navNext: null,
   noNavButtons: false,
@@ -833,6 +838,7 @@ class DayPicker extends React.PureComponent {
     const {
       disablePrev,
       disableNext,
+      navPosition,
       navPrev,
       navNext,
       noNavButtons,
@@ -855,6 +861,7 @@ class DayPicker extends React.PureComponent {
         disableNext={disableNext}
         onPrevMonthClick={this.onPrevMonthClick}
         onNextMonthClick={onNextMonthClick}
+        navPosition={navPosition}
         navPrev={navPrev}
         navNext={navNext}
         orientation={orientation}
@@ -965,6 +972,7 @@ class DayPicker extends React.PureComponent {
       transitionDuration,
       verticalBorderSpacing,
       horizontalMonthPadding,
+      navPosition,
     } = this.props;
 
     const { reactDates: { spacing: { dayPickerHorizontalPadding } } } = theme;
@@ -1085,7 +1093,7 @@ class DayPicker extends React.PureComponent {
               aria-roledescription={phrases.roleDescription}
               aria-label={phrases.calendarLabel}
             >
-              {!verticalScrollable && this.renderNavigation()}
+              {!verticalScrollable && navPosition === NAV_POSITION_TOP && this.renderNavigation()}
 
               <div
                 {...css(
@@ -1131,6 +1139,8 @@ class DayPicker extends React.PureComponent {
                 />
                 {verticalScrollable && this.renderNavigation()}
               </div>
+
+              {!verticalScrollable && navPosition === NAV_POSITION_BOTTOM && this.renderNavigation()}
 
               {!isTouch && !hideKeyboardShortcutsPanel && (
                 <DayPickerKeyboardShortcuts

@@ -405,6 +405,7 @@ class DateRangePicker extends React.PureComponent {
       monthFormat,
       renderMonthText,
       renderWeekHeaderElement,
+      navPosition,
       navPrev,
       navNext,
       onPrevMonthClick,
@@ -506,6 +507,7 @@ class DateRangePicker extends React.PureComponent {
           daySize={daySize}
           initialVisibleMonth={initialVisibleMonthThunk}
           hideKeyboardShortcutsPanel={hideKeyboardShortcutsPanel}
+          navPosition={navPosition}
           navPrev={navPrev}
           navNext={navNext}
           minimumNights={minimumNights}

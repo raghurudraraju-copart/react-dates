@@ -1140,7 +1140,8 @@ class DayPicker extends React.PureComponent {
                 {verticalScrollable && this.renderNavigation()}
               </div>
 
-              {!verticalScrollable && navPosition === NAV_POSITION_BOTTOM && this.renderNavigation()}
+              {!verticalScrollable
+                && navPosition === NAV_POSITION_BOTTOM && this.renderNavigation()}
 
               {!isTouch && !hideKeyboardShortcutsPanel && (
                 <DayPickerKeyboardShortcuts

@@ -99,6 +99,7 @@ const defaultProps = {
   horizontalMonthPadding: undefined,
 
   // navigation related props
+  customDayPickerNavigationStyles: null,
   navPosition: NAV_POSITION_TOP,
   navPrev: null,
   navNext: null,
@@ -405,6 +406,7 @@ class DateRangePicker extends React.PureComponent {
       monthFormat,
       renderMonthText,
       renderWeekHeaderElement,
+      customDayPickerNavigationStyles,
       navPosition,
       navPrev,
       navNext,
@@ -507,6 +509,7 @@ class DateRangePicker extends React.PureComponent {
           daySize={daySize}
           initialVisibleMonth={initialVisibleMonthThunk}
           hideKeyboardShortcutsPanel={hideKeyboardShortcutsPanel}
+          customDayPickerNavigationStyles={customDayPickerNavigationStyles}
           navPosition={navPosition}
           navPrev={navPrev}
           navNext={navNext}

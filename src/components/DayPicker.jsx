@@ -77,6 +77,7 @@ const propTypes = forbidExtraProps({
   renderKeyboardShortcutsButton: PropTypes.func,
 
   // navigation props
+  customDayPickerNavigationStyles: PropTypes.object,
   disablePrev: PropTypes.bool,
   disableNext: PropTypes.bool,
   navPosition: NavPositionShape,
@@ -140,6 +141,7 @@ export const defaultProps = {
   renderKeyboardShortcutsButton: undefined,
 
   // navigation props
+  customDayPickerNavigationStyles: null,
   disablePrev: false,
   disableNext: false,
   navPosition: NAV_POSITION_TOP,
@@ -836,6 +838,7 @@ class DayPicker extends React.PureComponent {
 
   renderNavigation() {
     const {
+      customDayPickerNavigationStyles,
       disablePrev,
       disableNext,
       navPosition,
@@ -857,6 +860,7 @@ class DayPicker extends React.PureComponent {
 
     return (
       <DayPickerNavigation
+        customStyles={customDayPickerNavigationStyles}
         disablePrev={disablePrev}
         disableNext={disableNext}
         onPrevMonthClick={this.onPrevMonthClick}
@@ -1141,7 +1145,8 @@ class DayPicker extends React.PureComponent {
               </div>
 
               {!verticalScrollable
-                && navPosition === NAV_POSITION_BOTTOM && this.renderNavigation()}
+                && navPosition === NAV_POSITION_BOTTOM
+                && this.renderNavigation()}
 
               {!isTouch && !hideKeyboardShortcutsPanel && (
                 <DayPickerKeyboardShortcuts
